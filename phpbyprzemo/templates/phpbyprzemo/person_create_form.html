@@ -5,11 +5,13 @@
     <title>Tworzenie osoby</title>
 </head>
 <body>
+<p>Formularz dodawania pracownika</p>
     <form method="post" action="">
         {% csrf_token %}
+        <p> Podaj imię i nazwisko pracownika: </p>
         <input type="textbox" name="name">
-        <button type="submit" name="save">Zapisz</button>
+        <button type="submit" name="save">Dodaj</button>
     </form>
-    <p>PersonCreate's template</p>
+
 </body>
 </html>

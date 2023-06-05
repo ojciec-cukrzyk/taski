@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <h1>Zadania dla pracownika{{ person.name }}</h1>
+    <h1>Zadania dla pracownika {{ person.name }}</h1>
     <form method="post" action="">
         {% csrf_token %}
         {% for x in person.task_set.all %}
@@ -16,9 +16,11 @@
                 <button type="submit" name="save" value="save"><input type="checkbox" value="clicked" name="t{{ x.id }}"></button>{{ x }}
             {% endif %}
             <button type="submit" name="save" value="save">Zapisz zmiany</button>
-        <button type="submit" name="delete_this" value={{ x.id }}> Usun </button> <br>
+        <button type="submit" name="delete_this" value={{ x.id }}> Usuń </button> <br><br>
         {% endfor %}
     </form>
+
+    <br><br>
 
     <form method="post" action="">
         {% csrf_token %}
