@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tworzenie osoby</title>
+</head>
+<body>
+    <form method="post" action="">
+        {% csrf_token %}
+        <input type="textbox" name="name">
+        <button type="submit" name="save">Zapisz</button>
+    </form>
+    <p>PersonCreate's template</p>
+</body>
+</html>

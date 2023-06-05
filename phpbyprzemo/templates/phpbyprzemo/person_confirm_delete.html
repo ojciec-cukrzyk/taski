@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Potwierdz usuniecie</title>
+</head>
+<body>
+
+    <form method="post">{% csrf_token %}
+        <p>Czy na pewno chcesz usunac "{{ object }}"?</p>
+        <input type="submit" value="Confirm">
+    </form>
+
+</body>
+</html>

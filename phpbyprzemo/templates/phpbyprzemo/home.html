@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dj ango jest super</title>
+    <style type="text/css">
+        .listItem {
+            font-style:italic;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+
+    {% if request.user.is_authenticated %}
+        <h1>{{ request.user }}</h1>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+    <h2>Lista pracownikow</h2>
+
+    <button onclick="window.location.href='/person-create'">Dodaj pracownika</button>
+
+    <ul>
+        {% for person in person_list.person_set.all %}
+            <li><h3 class="listItem"><a href="{% url 'persondetail' person.id %}">{{ person.name }}</a><br></h3>
+            <a href="{% url 'personupdate' person.id %}">edit</a>
+                <button onclick="window.location.href='/person-delete/pk={{ person.id }}' " >Usun</button>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <button onclick="window.location.href='/logout'"> Wyloguj</button>
+
+</body>
+</html>

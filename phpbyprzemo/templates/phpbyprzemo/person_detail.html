@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegoly</title>
+</head>
+<body>
+
+    <h1>Zadania dla pracownika{{ person.name }}</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        {% for x in person.task_set.all %}
+            {% if x.is_complete == True %}
+                <input type="checkbox" value="clicked" name="t{{ x.id }}" checked>{{ x }}
+            {% else %}
+                <button type="submit" name="save" value="save"><input type="checkbox" value="clicked" name="t{{ x.id }}"></button>{{ x }}
+            {% endif %}
+            <button type="submit" name="save" value="save">Zapisz zmiany</button>
+        <button type="submit" name="delete_this" value={{ x.id }}> Usun </button> <br>
+        {% endfor %}
+    </form>
+
+    <form method="post" action="">
+        {% csrf_token %}
+        <input type="textbox" name="new_item" placeholder="Wprowadz zadanie">
+        <button type="submit" name="add_item" value="add_item">Dodaj</button>
+    </form>
+
+</body>
+</html>
