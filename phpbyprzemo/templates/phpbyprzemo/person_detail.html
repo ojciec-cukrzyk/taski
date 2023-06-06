@@ -6,19 +6,26 @@
 </head>
 <body>
 
-    <h1>Zadania dla pracownika {{ person.name }}</h1>
+    <h1>Zadania dla pracownika {{ person.name }}</h1> <button onclick="window.location.href='/'"> Powrót do listy pracowników</button>
+    <ul>
     <form method="post" action="">
         {% csrf_token %}
         {% for x in person.task_set.all %}
+            <li>
             {% if x.is_complete == True %}
                 <input type="checkbox" value="clicked" name="t{{ x.id }}" checked>{{ x }}
             {% else %}
                 <button type="submit" name="save" value="save"><input type="checkbox" value="clicked" name="t{{ x.id }}"></button>{{ x }}
             {% endif %}
             <button type="submit" name="save" value="save">Zapisz zmiany</button>
-        <button type="submit" name="delete_this" value={{ x.id }}> Usuń </button> <br><br>
+            <button type="submit" name="delete_this" value={{ x.id }}> Usuń </button>
+            <button><a style="text-decoration: none;" href='{% url 'taskedit' x.id %}'>Edytuj dane o tasku</a></button>
+            </li>
+            <br><br>
         {% endfor %}
     </form>
+
+
 
     <br><br>
 

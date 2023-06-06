@@ -6,6 +6,7 @@ class Pracownicy(models.Model):
     imie = models.CharField(max_length=255)
     nazwisko = models.CharField(max_length=255)
     task= models.CharField(max_length=255)
+    #juz w sumie nieuzywany tez
 
 class Person(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

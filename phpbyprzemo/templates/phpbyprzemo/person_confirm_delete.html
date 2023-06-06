@@ -5,6 +5,7 @@
     <title>Potwierdz usuniecie</title>
 </head>
 <body>
+<button onclick="window.location.href='/'"> Powrót do listy pracowników</button>
 
     <form method="post">{% csrf_token %}
         <p>Czy na pewno chcesz usunac "{{ object }}"?</p>

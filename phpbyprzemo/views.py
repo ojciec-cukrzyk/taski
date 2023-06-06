@@ -2,7 +2,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Pracownicy, Person
+from .models import Pracownicy, Person, Task
 from django.views.generic import ListView
 
 def index(request):
@@ -122,3 +122,10 @@ class PersonDelete(LoginRequiredMixin,DeleteView):
     model = Person
     success_url = reverse_lazy('personlist')
     template_name = 'phpbyprzemo/person_confirm_delete.html'
+
+
+class TaskEdit(LoginRequiredMixin,UpdateView):
+    model = Task
+    fields = ['task']
+    template_name = 'phpbyprzemo/task_edit.html'
+    success_url = reverse_lazy('personlist')
