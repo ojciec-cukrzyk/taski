@@ -1,12 +1,43 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Zaloguj</title>
-</head>
-<body>
+    <title>Logowanie</title>
+    {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
 
-    {% for message in messages %}
+
+</head>
+
+<header>
+  <!-- Navbar -->
+  <nav
+       id="main-navbar"
+       class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+       >
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+            <h3> Panel logowania </h3>
+
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+
+<main style="margin-top: 58px">
+  <div class="container pt-4">
+      {% for message in messages %}
         <p style="color:green;">{{ message }}</p>
         {% if message is success %}
             <p>True</p>
@@ -21,7 +52,8 @@
         <button type="submit" name="signin">Zaloguj</button>
     </form>
     <br><br>
-    <a href="{% url 'signup' %}">Załóż konto dla przełożonego</a>
+    <a href="{% url 'signup' %}">Załóż konto dla managera</a>
+  </div>
+</main>
 
-</body>
 </html>

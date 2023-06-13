@@ -1,4 +1,6 @@
 from django.urls.conf import path
+from django.conf.urls.static import static
+from django.conf import settings
 
 from . import views
 
@@ -22,3 +24,6 @@ urlpatterns = [
     path('person-delete/pk=<int:pk>', PersonDelete.as_view(), name='persondelete'),
     path('task-edit/pk=<int:pk>', TaskEdit.as_view(), name='taskedit'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

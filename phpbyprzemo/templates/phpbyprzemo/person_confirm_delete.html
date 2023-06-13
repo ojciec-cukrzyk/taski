@@ -2,15 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Potwierdz usuniecie</title>
-</head>
-<body>
-<button onclick="window.location.href='/'"> Powrót do listy pracowników</button>
+    <title>Potwierdź usunięcie pracownika</title>
+    {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
 
+
+</head>
+
+<header>
+  <!-- Navbar -->
+  <nav
+       id="main-navbar"
+       class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+       >
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+            {% if request.user.is_authenticated %}
+			<h1>Kapo: {{ request.user }}</h1>
+			{% else %}
+				<a href="{% url 'login' %}">Login</a>
+			{% endif %}
+
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+            <button onclick="window.location.href='/'" type="button"  class="btn btn-primary" style="float: right;"> Powrót do listy pracowników</button>
+          <button onclick="window.location.href='/logout'"  type="button"  class="btn btn-primary" style="float: right;"> Wyloguj</button>
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+
+<main style="margin-top: 58px">
+  <div class="container pt-4">
     <form method="post">{% csrf_token %}
         <p>Czy na pewno chcesz usunac "{{ object }}"?</p>
         <input type="submit" value="Potwierdź">
     </form>
+  </div>
+</main>
 
-</body>
 </html>
