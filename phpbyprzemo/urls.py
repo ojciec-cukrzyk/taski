@@ -1,19 +1,13 @@
 from django.urls.conf import path
 from django.conf.urls.static import static
 from django.conf import settings
-
 from . import views
-
 from django.contrib import admin
 from django.urls import path, include
 from .views import UserSignup,UserLogin,PersonCreate,PersonList,PersonDetail, PersonUpdate, PersonDelete, TaskEdit
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-
-    #path('app/',include('djangoProject.urls')),
-    #path('',views.index,name='index'),
-    path('pracownicy/<int:pracownicy_id>',views.pracownicy_by_id, name="pracownicy_by_id"),
     path('signup/', UserSignup.as_view(), name='signup'),
     path('login/', UserLogin.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),

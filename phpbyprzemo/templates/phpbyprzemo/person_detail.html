@@ -8,55 +8,39 @@
   {% bootstrap_javascript %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
-
-
 </head>
 <header>
-  <!-- Navbar -->
-  <nav
-       id="main-navbar"
-       class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
-       >
-    <!-- Container wrapper -->
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
     <div class="container-fluid">
-      <!-- Toggle button -->
             {% if request.user.is_authenticated %}
-			<h1>Kapo: {{ request.user }}</h1>
+			    <h1>Manager: {{ request.user }}</h1>
 			{% else %}
 				<a href="{% url 'login' %}">Login</a>
 			{% endif %}
-
-      <!-- Right links -->
       <ul class="navbar-nav ms-auto d-flex flex-row">
-            <button onclick="window.location.href='/'" type="button"  class="btn btn-primary" style="float: right;"> Powrót do listy pracowników</button>
+          <button onclick="window.location.href='/'" type="button"  class="btn btn-primary" style="float: right;"> Powrót do listy pracowników</button>
           <button onclick="window.location.href='/logout'"  type="button"  class="btn btn-primary" style="float: right;"> Wyloguj</button>
       </ul>
     </div>
-    <!-- Container wrapper -->
   </nav>
-  <!-- Navbar -->
 </header>
+
 <main style="margin-top: 58px">
   <div class="container pt-4">
       <div class="container pt-4">
-
-    <!--Section: Sales Performance KPIs-->
-    <section class="mb-4">
-      <div class="card">
-        <div class="card-header text-center py-3">
-          <h5 class="mb-0 text-center">
-            <strong>Lista zadań dla pracownika</strong>
-          </h5>
-        </div>
-              <ul>
-    <form method="post" action="">
-        {% csrf_token %}
-        {% for x in person.task_set.all %}
-            <ul>
-                <h3>
+          <section class="mb-4">
+            <div class="card">
+                <div class="card-header text-center py-3">
+                    <h5 class="mb-0 text-center">
+                        <strong>Lista zadań dla pracownika</strong>
+                    </h5>
+                </div>
+                <ul>
+                     <form method="post" action="">
+                     {% csrf_token %}
+                         {% for x in person.task_set.all %}
+                <ul>
+                    <h3>
                     {% if x.is_complete == True %}
                         <input style="float:left" type="checkbox" value="clicked" name="t{{ x.id }}" checked>{{ x }}
                     {% else %}

@@ -1,54 +1,33 @@
 <!DOCTYPE html>
-
-
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>dj ango jest super</title>
+    <title>Zarządzanie taskami</title>
     {% load bootstrap5 %}
   {% bootstrap_css %}
   {% bootstrap_javascript %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
-
-
 </head>
 
 <header>
-  <!-- Navbar -->
-  <nav
-       id="main-navbar"
-       class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
-       >
-    <!-- Container wrapper -->
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
     <div class="container-fluid">
-      <!-- Toggle button -->
-            {% if request.user.is_authenticated %}
-			<h1>Kapo: {{ request.user }}</h1>
-			{% else %}
-				<a href="{% url 'login' %}">Login</a>
-			{% endif %}
-
-      <!-- Right links -->
+        {% if request.user.is_authenticated %}
+		    <h1>Manager: {{ request.user }}</h1>
+		{% else %}
+			<a href="{% url 'login' %}">Login</a>
+		{% endif %}
       <ul class="navbar-nav ms-auto d-flex flex-row">
-
           <button onclick="window.location.href='/logout'"> Wyloguj</button>
       </ul>
     </div>
-    <!-- Container wrapper -->
   </nav>
-  <!-- Navbar -->
 </header>
 
-  <!--Main layout-->
+
 <main style="margin-top: 58px">
   <div class="container pt-4">
-
-    <!--Section: Sales Performance KPIs-->
     <section class="mb-4">
       <div class="card">
         <div class="card-header text-center py-3">
@@ -56,14 +35,16 @@
             <strong>Lista pracowników</strong>
           </h5>
         </div>
-              <ul class="list-group" style="">
-	   {% for person in person_list.person_set.all %}
-  <li class="list-group-item">
-    <h3 class="listItem" style="float: center;"><a href="{% url 'persondetail' person.id %}">{{ person.name }}</a></h3>
-  <button type="button" onclick="window.location.href='/person-delete/pk={{ person.id }}' " class="btn btn-danger"  style="float: right;">Usuń pracownika</button><button type="button" onclick="window.location.href='{% url 'personupdate' person.id %}'" class="btn btn-primary" style="float: right;">Edytuj dane o pracowniku</button></li>
-    {% endfor %}
+          <ul class="list-group" style="">
+	        {% for person in person_list.person_set.all %}
+                <li class="list-group-item">
+                <h3 class="listItem" style="float: center;"><a href="{% url 'persondetail' person.id %}">{{ person.name }}</a></h3>
+                <button type="button" onclick="window.location.href='/person-delete/pk={{ person.id }}' " class="btn btn-danger"  style="float: right;">Usuń pracownika</button><button type="button" onclick="window.location.href='{% url 'personupdate' person.id %}'" class="btn btn-primary" style="float: right;">Edytuj dane o pracowniku</button></li>
+              {% endfor %}
 
-</ul><br><button type="button" class="btn btn-primary" onclick="window.location.href='/person-create'" style="float: none; text-align: center; position: static; display: inline-block; top: auto; left: auto; width: 100%;">Dodaj pracownika</button>
+          </ul>
+          <br>
+          <button type="button" class="btn btn-primary" onclick="window.location.href='/person-create'" style="float: none; text-align: center; position: static; display: inline-block; top: auto; left: auto; width: 100%;">Dodaj pracownika</button>
 
       </div>
     </section>

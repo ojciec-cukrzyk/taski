@@ -1,36 +1,21 @@
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render
-from .models import Pracownicy, Person, Task
+from .models import  Person, Task
 from django.views.generic import ListView
-
-def index(request):
-    return HttpResponse("Hello world!")
-
-def pracownicy_by_id(request, pracownicy_id):
-    pracownicy = Pracownicy.objects.get(pk=pracownicy_id)
-    return HttpResponse(f"Pracownik: {pracownicy.imie} {pracownicy.nazwisko}, task: {pracownicy.task}")
-
-
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import redirect
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import View
 from django.shortcuts import render,redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import View
-from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.detail import DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import DeleteView
 
+def index(request):
+    return HttpResponse("Hello world!")
 
 class UserSignup(FormView):
     template_name = 'phpbyprzemo/signup.html'
